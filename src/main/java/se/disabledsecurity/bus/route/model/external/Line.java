@@ -1,4 +1,4 @@
-package se.disabledsecurity.bus.route.model;
+package se.disabledsecurity.bus.route.model.external;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
