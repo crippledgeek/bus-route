@@ -2,6 +2,7 @@ package se.disabledsecurity.bus.route.clients;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,7 @@ public class TrafikLabClient extends GzippedRestClient {
 		super(log, restTemplate, url);
 	}
 
+	@Cacheable("buses")
 	public ApiBaseModel<Line> getAllBuses() {
 		try {
 			return restTemplate
@@ -36,6 +38,7 @@ public class TrafikLabClient extends GzippedRestClient {
 		}
 	}
 
+	@Cacheable("busStops")
 	public ApiBaseModel<StopPoint> getAllBusStops() {
 		try {
 			return restTemplate
@@ -50,7 +53,7 @@ public class TrafikLabClient extends GzippedRestClient {
 			throw new ApiFetchException(e);
 		}
 	}
-
+	@Cacheable("busRoutes")
 	public ApiBaseModel<Route> getAllBusRoutes() {
 		try {
 			return restTemplate

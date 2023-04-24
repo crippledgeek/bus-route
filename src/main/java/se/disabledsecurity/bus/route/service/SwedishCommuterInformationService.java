@@ -6,6 +6,7 @@ import se.disabledsecurity.bus.route.clients.TrafikLabClient;
 import se.disabledsecurity.bus.route.model.external.Line;
 import se.disabledsecurity.bus.route.model.external.Route;
 import se.disabledsecurity.bus.route.model.external.StopPoint;
+import se.disabledsecurity.bus.route.model.internal.FrontEndModel;
 
 import java.util.Comparator;
 import java.util.List;
@@ -27,8 +28,8 @@ public class SwedishCommuterInformationService implements CommuterInformationSer
 
 
 	@Override
-	public List<Line> findBusLinesWithMostStops(int numberOfBusLines) {
-		return findAllRouteByLine()
+	public List<FrontEndModel> findBusLinesWithMostStops(int numberOfBusLines) {
+		var lines= findAllRouteByLine()
 				.entrySet()
 				.stream()
 				.sorted(byNumberOfStoppingPoints.reversed())
@@ -37,14 +38,14 @@ public class SwedishCommuterInformationService implements CommuterInformationSer
 				.map(this::getLineDetailsFor)
 				.toList();
 
-		/*return lines
+		return lines
 				.stream()
 				.map(line -> new FrontEndModel(line.lineNumber(),
 											   findStopsOnRoute(line.lineNumber())
 													   .stream()
 													   .map(StopPoint::stopPointName)
 													   .toList()))
-				.toList();*/
+				.toList();
 
 	}
 

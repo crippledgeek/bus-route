@@ -1,9 +1,9 @@
 package se.disabledsecurity.bus.route.service;
 
-import se.disabledsecurity.bus.route.model.external.Line;
+import se.disabledsecurity.bus.route.model.internal.FrontEndModel;
 
 import java.util.List;
 
 public interface CommuterInformationService {
-	List<Line> findBusLinesWithMostStops(int numberOfBusLines);
+	List<FrontEndModel> findBusLinesWithMostStops(int numberOfBusLines);
 }
